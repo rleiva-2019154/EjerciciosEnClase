@@ -1,0 +1,16 @@
+{
+  "name": "ejemplo1node",
+  "version": "2.0.0",
+  "description": "Primer ejemplo de un proyecto de NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rudgar Leiva",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.1.1"
+  },
+  "type": "module"
+}
