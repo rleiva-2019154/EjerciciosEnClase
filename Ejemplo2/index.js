@@ -7,6 +7,7 @@
 
 const mongoose = require('mongoose')
 const express = require('express')
+const producRoutes = require('./src/routes/product.routes')
 
 /*Promise
 const connect = () =>{
@@ -41,6 +42,11 @@ const connect = async ()=>{
 //Configurar servidor
 const app = express()
 const port = 3000
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
+
+//Declaracion y uso de las rutas
+app.use(producRoutes)
 
 //Levantar servidor
 const initServer = ()=> app.listen(port, ()=> {
