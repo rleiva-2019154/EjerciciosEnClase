@@ -17,10 +17,36 @@ exports.newProduct = (req, res)=>{
             console.error(err)
             return res.status(500).send({message: 'Error saving data'})
         }else if(productSaved){
-            return res.send({mesage: 'Product saved successfully'})
+            return res.send({message: 'Product saved successfully'})
         }else{
             return res.status(404).send({message: 'Error'})
         }
     })
-    return res.send({message: 'Ok', data})
+}
+
+    //Mejor versión actualmente //bienas prácticas
+    /*exports.addProduct = async (req, res)=>{
+        try{    
+            let {name, description, price} = req.body //funcion
+            let product = new Product()
+            product.name = name
+            product.description = description
+            product.price = price
+            await product.save()
+            return res.send({message: 'Product saved successfully'})
+        }catch(err){
+            console.error(err)
+            res.status(500).send({message: 'Error creating product'})
+    }*/
+    //Refactoring
+exports.addProduct = async (req, res)=>{
+    try{    
+        let data = req.body //funcion
+        let product = new Product(data)
+        await product.save()
+        return res.send({message: 'Product saved sucessfully'})
+    }catch(err){
+        console.error(err)
+        return res.status(500).send({message: 'Error creating product', err})
+    }
 }
